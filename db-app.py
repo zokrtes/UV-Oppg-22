@@ -8,5 +8,17 @@ try:
 
     pStart()
 
+# Funskjon for å skrive hovedmenyen til skjerm
+    def skriv_meny():
+        print("\nHovedmeny for beregning av areal\n")
+        print("1. Alle medlemmer")
+        print("2. Vis alle registrert info om et enkelt medlem")
+        print("3. Spørringer")
+        print("4. Vedlikehold medlemmer")
+        print("5. Vedlikehold")
+        print("6. Avslutt")
+
+
+
 except pyo.Error as e:
     print("Feil i kobling: ", e)
