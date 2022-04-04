@@ -56,14 +56,15 @@ try:
     
     ans=input("Hva ønsker du å gjøre. Velg tall? ") 
 
-    # dette er funksjonen som henter ut alle medlemmer
+#   dette er funksjonen som henter ut alle medlemmer
     if ans=="1":
         clear()
 
+#   dette er funksjonene som viser all registrert info om et enkelt medlem
     elif ans=="2":
         clear()
 
-
+#   Spørringer
     elif ans=="3":
         clear()
 
@@ -97,6 +98,7 @@ try:
         if bla != "3.8":
             venter=input("Trykk ENTER for å fortsette!")   
 
+#   Vedlikehold medlemmer
     elif ans=="4":
         clear()
 
@@ -118,6 +120,7 @@ try:
         if bla != "4.5":
             venter=input("Trykk ENTER for å fortsette!")   
 
+#   Vedlikehold
     elif ans=="5":
         clear()
         undermeny5()
@@ -137,7 +140,7 @@ try:
 
         if bla != "5.5":
             venter=input("Trykk ENTER for å fortsette!")   
-
+#   Avslutt
     elif ans=="6":
         clear()     
         print("\nTakk for at du brukte areal-programmet! Velkommen igjen!\n")    
