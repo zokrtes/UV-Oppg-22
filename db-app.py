@@ -5,7 +5,6 @@ try:
     conn = pyo.connect(con_string)
     cursor = conn.cursor()
     print('Koblet til database!')
-    pStart()
     def clear():
         os.system('cls')
 
