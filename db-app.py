@@ -1,12 +1,17 @@
 import pyodbc as pyo
 
 try:
-    con_string = r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Code\Access\DB\VARER.ACCDB;'
+    con_string = r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=E:\repo\UV-Oppg-22\Medlemsregister.accdb;'
     conn = pyo.connect(con_string)
     cursor = conn.cursor()
     print('Koblet til database!')
+<<<<<<< Updated upstream
 
     pStart()
+=======
+    def clear():
+        os.system('cls')
+>>>>>>> Stashed changes
 
 # Funskjon for å skrive hovedmenyen til skjerm
     def skriv_meny():
