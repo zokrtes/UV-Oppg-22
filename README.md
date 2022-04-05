@@ -9,3 +9,9 @@ For å utvikle dette programmet sammen skal dere benytte GitHub.Deres oppdrag er
 Start med et møte dere dere planlegger rammene for applikasjonen. Planlegg arbeidsfordeling, sørg for at alle blir aktivert.
 
 Det ferdige programmet skal ha et slikt menysystem
+
+Arbeids oppgaver
+Erik: Få skriv_meny() til å funke
+Martin: 
+Max: 
+Fredrik: 
