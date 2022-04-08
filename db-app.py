@@ -59,10 +59,20 @@ try:
     # dette er funksjonen som henter ut alle medlemmer
     if ans=="1":
         clear()
+        cursor.execute("SELECT * FROM Medlemmer WHERE Fornavn")
 
+        for rad in cursor.fetchall():
+            print(rad)
+
+
+#   dette er funksjonene som viser all registrert info om et enkelt medlem
     elif ans=="2":
         clear()
-
+        m_id = int(input("medlems id: "))
+        cursor.execute("SELECT * FROM Medlemmer WHERE MedlemsID = ?", (m_id))
+        
+        for rad in cursor.fetchall():
+            print(rad)
 
     elif ans=="3":
         clear()
@@ -101,20 +111,62 @@ try:
         clear()
 
         undermeny4()
-        bla=input("Hva ønsker du å gjøre. Velg tall? ") 
+        bla=input("Hva ønsker du å gjøre. Velg tall? ")
 
         if bla == "4.1":
             clear()
+            print("\nHer kan du legge til en ny medlem")
+
+            medlemsid=int(input("Legg til medlemsID: "))
+            fornavn=input("Legg til fornavn: ")
+            etternavn=input("Legg til etternarvn: ")
+            adresse=input("Legg til adresse: ")
+            postnr=input("Legg til postnr: ")
+            tlf=input("Legg til telefon nummer: ")
+            mobil=input("Legg til mobil nummer: ")
+            epost=input("Legg til E-post: ")
+            fødselsdato=input("Legg til fødselsdato: ")
+            medlemstype=int(input("Legg til medlemstype (1 eller 2): "))
+            betalt=input("Legg til om brukeren har betalt eller ikke (True eller False): ")
+
+            cursor.execute(f"INSERT INTO medlemmer(MedlemsID, Fornavn, Etternavn, Adresse, Postnr, Telefon, Mobil, [E-post], Fødselsdato, MTypeID, Betalt) VALUES ({medlemsid}, '{fornavn}', '{etternavn}', '{adresse}', '{postnr}', '{tlf}', '{mobil}', '{epost}', '{fødselsdato}', {medlemstype}, {betalt})")
+            conn.commit()
+    
+            print("Data lagt til!")
 
         elif bla == "4.2":
             clear()
+            print("\nHer kan du slette en medlem")
+
+            medlemsnr=int(input("Oppgi medlemsID til den du ønsker å fjerne: ")) 
+
+            cursor.execute(f"DELETE FROM medlemmer WHERE MedlemsID = ?", (medlemsnr))
+            cursor.commit()
+            print("Data slettet!")
             
         elif bla == "4.3":
             clear()
+            medlemnr=int(input=("Oppgi medlemsID: "))
+            betaltendring=input("Har medlemmet betalt kontigenten? True eller False: ")
+            
+            cursor = conn.cursor()
+
+            cursor.execute(f"UPDATE medlemmer SET betalt = ? WHERE MedlemsID = '{medlemnr}'", (betaltendring))
+            cursor.commit()
+            print("Data er oppdatert!")
             
         elif bla == "4.4":
             clear()
-            skriv_meny()
+            medlemnr = 20
+            nytt_nummer = "44444444"
+            
+
+            cursor = conn.cursor()
+
+            cursor.execute("UPDATE medlemmer SET mobil = ? WHERE MedlemsID = ?", (nytt_nummer, medlemnr))
+            cursor.commit()
+            print("Data er oppdatert!")
+
         if bla != "4.5":
             venter=input("Trykk ENTER for å fortsette!")   
 
