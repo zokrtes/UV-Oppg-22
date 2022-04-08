@@ -59,9 +59,19 @@ try:
     # dette er funksjonen som henter ut alle medlemmer
     if ans=="1":
         clear()
+        cursor.execute("SELECT * FROM Medlemmer WHERE Fornavn")
+
+        for rad in cursor.fetchall():
+            print(rad)
 
     elif ans=="2":
         clear()
+        m_id = int(input("medlems id: "))
+        cursor.execute("SELECT * FROM Medlemmer WHERE MedlemsID = ?", (m_id))
+        
+        for rad in cursor.fetchall():
+            print(rad)
+
 
 
     elif ans=="3":
