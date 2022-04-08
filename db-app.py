@@ -151,19 +151,28 @@ try:
         clear()
         undermeny5()
         bla=input("Hva ønsker du å gjøre. Velg tall? ") 
-
+        # 5.1.Legg til en medlemstype (Fullt medlem, støttemedlem osv)
         if bla == "5.1":
             clear()
 
+        # 5.2.Slett en medlemstype
         elif bla == "5.2":
             clear()
-
+            m_id = int(input("medlems id: "))
+            
+            cursor.execute("DELETE FROM Medlemmer WHERE MedlemsID = ?", (m_id))
+            cursor.commit()
+            print("Data slettet!")
+        # 5.3.Øk kontingentenmed 10%
         elif bla == "5.3":
             clear()
+
+        # 5.4.Skrive medlemslisten ut til en csv-fil
 
         elif bla == "5.4":
             clear()
 
+        # 5.5.Tilbake til Hovedmenyen
         if bla != "5.5":
             venter=input("Trykk ENTER for å fortsette!")   
 #   Avslutt
