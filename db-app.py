@@ -59,47 +59,75 @@ try:
     # dette er funksjonen som henter ut alle medlemmer
     if ans=="1":
         clear()
+        cursor.execute("SELECT * FROM Medlemmer WHERE Fornavn")
 
+        for rad in cursor.fetchall():
+            print(rad)
+
+
+#   dette er funksjonene som viser all registrert info om et enkelt medlem
     elif ans=="2":
         clear()
+        m_id = int(input("medlems id: "))
+        cursor.execute("SELECT * FROM Medlemmer WHERE MedlemsID = ?", (m_id))
+        
+        for rad in cursor.fetchall():
+            print(rad)
 
-
+#   Spørringer
     elif ans=="3":
         clear()
 
         undermeny3()
         bla=input("Hva ønsker du å gjøre. Velg tall? ") 
 
+        # Lag en liste over medlemmer som ikke har betalt medlemskontingenten
         if bla == "3.1":
             clear()
-            
+            cursor.execute("SELECT * FROM Medlemmer WHERE Betalt = False")
+            for rad in cursor.fetchall():
+                print(rad)
+        
+        # Lag en liste over medlemmer som er pensjonister, eldre enn 67 år
         elif bla == "3.2":
             clear()
-            
+            cursor.execute("SELECT * FROM Medlemmer WHERE = False")
+            for rad in cursor.fetchall():
+                print(rad)
+
+
+        # Lag en liste over unge voksne, de som er mellom 18 og 30 år gamle
         elif bla == "3.3":
             clear()
             
+        # Lag en liste over alle medlemmer som er eldre enn en viss alder. Denne alderen skal skrives 
         elif bla == "3.4":
             clear()
-
+        
+        # Lag en medlemsliste overde som bor på et valgfritt sted
         elif bla == "3.5":
             clear()
+            in_sted = input("Sted: ").lower()
+            cursor.execute("SELECT * FROM Medlemmer WHERE Postnr = False")
+            for rad in cursor.fetchall():
+                print(rad)
 
+        # Lag en spørring som viser gjennomsnittlig alder for alle medlemmene
         elif bla == "3.6":
             clear()
 
+        # Lag en liste over de som bor i Vestfold og Telemark
         elif bla == "3.7":
             clear()
+            cursor.execute("SELECT * FROM Medlemmer WHERE Betalt = ?", (m_id))
 
-        elif bla == "3.8":
-            clear()
-        
-        if bla != "3.8":
+        # Tilbake til Hovedmenyen
+        elif bla != "3.8":
             venter=input("Trykk ENTER for å fortsette!")   
 
+#   Vedlikehold medlemmer
     elif ans=="4":
         clear()
-
         undermeny4()
         bla=input("Hva ønsker du å gjøre. Velg tall? ") 
 
@@ -118,6 +146,7 @@ try:
         if bla != "4.5":
             venter=input("Trykk ENTER for å fortsette!")   
 
+#   Vedlikehold
     elif ans=="5":
         clear()
         undermeny5()
@@ -137,7 +166,7 @@ try:
 
         if bla != "5.5":
             venter=input("Trykk ENTER for å fortsette!")   
-
+#   Avslutt
     elif ans=="6":
         clear()     
         print("\nTakk for at du brukte areal-programmet! Velkommen igjen!\n")    
