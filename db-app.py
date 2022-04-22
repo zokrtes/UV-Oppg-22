@@ -59,10 +59,20 @@ try:
     # dette er funksjonen som henter ut alle medlemmer
     if ans=="1":
         clear()
+        cursor.execute("SELECT * FROM Medlemmer WHERE Fornavn")
 
+        for rad in cursor.fetchall():
+            print(rad)
+
+
+#   dette er funksjonene som viser all registrert info om et enkelt medlem
     elif ans=="2":
         clear()
-
+        m_id = int(input("medlems id: "))
+        cursor.execute("SELECT * FROM Medlemmer WHERE MedlemsID = ?", (m_id))
+        
+        for rad in cursor.fetchall():
+            print(rad)
 
     elif ans=="3":
         clear()
@@ -102,20 +112,12 @@ try:
 
         undermeny4()
         bla=input("Hva ønsker du å gjøre. Velg tall? ")
-        mine_medlemmer = (
-            (34,"Martin","Leerstang", "Bergsbygdavegen 695", "3949", "11111111", "97493561", "marblee@online.no", "07.02.04", "1", False)
-        )
-
-        cursor.executemany("INSERT INTO medlemmer VALUES (?,?,?,?,?,?,?,?,?,?,?)",mine_medlemmer)
-        conn.commit()
-    
-        print("Data lagt til!")
 
         if bla == "4.1":
             clear()
             print("\nHer kan du legge til en ny medlem")
 
-            medlemsid=input("Legg til medlemsID: ")
+            medlemsid=int(input("Legg til medlemsID: "))
             fornavn=input("Legg til fornavn: ")
             etternavn=input("Legg til etternarvn: ")
             adresse=input("Legg til adresse: ")
@@ -124,15 +126,13 @@ try:
             mobil=input("Legg til mobil nummer: ")
             epost=input("Legg til E-post: ")
             fødselsdato=input("Legg til fødselsdato: ")
-            medlemstype=input("Legg til medlemstype (1 eller 2): ")
+            medlemstype=int(input("Legg til medlemstype (1 eller 2): "))
             betalt=input("Legg til om brukeren har betalt eller ikke (True eller False): ")
 
-            cursor.executemany(f"INSERT INTO medlemmer VALUES '{medlemsid}', '{fornavn}', '{etternavn}', '{adresse}', '{postnr}', '{tlf}', '{mobil}', '{epost}', '{fødselsdato}', '{medlemstype}''{betalt}'",mine_medlemmer)
+            cursor.execute(f"INSERT INTO medlemmer(MedlemsID, Fornavn, Etternavn, Adresse, Postnr, Telefon, Mobil, [E-post], Fødselsdato, MTypeID, Betalt) VALUES ({medlemsid}, '{fornavn}', '{etternavn}', '{adresse}', '{postnr}', '{tlf}', '{mobil}', '{epost}', '{fødselsdato}', {medlemstype}, {betalt})")
             conn.commit()
     
             print("Data lagt til!")
-
-        
 
         elif bla == "4.2":
             clear()
