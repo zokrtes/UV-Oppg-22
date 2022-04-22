@@ -194,16 +194,26 @@ try:
         clear()
         undermeny5()
         bla=input("Hva ønsker du å gjøre. Velg tall? ") 
+        
         # 5.1.Legg til en medlemstype (Fullt medlem, støttemedlem osv)
         if bla == "5.1":
             clear()
+            MyTypeID = int(input("Leg til MyTypeID : "))
+            MyTypeNavn = input("Legg til MyTypeNavn : ")
+            Kontigent = int(input("Legg til kontigent : "))
+
+            cursor = conn.cursor()
+
+            cursor.executemany(f"INSERT INTO medlemstyper VALUES '{MyTypeID}', '{MyTypeNavn}', '{Kontigent}' ")
+            cursor.commit()
+            print("Data er lagt til!")
 
         # 5.2.Slett en medlemstype
         elif bla == "5.2":
             clear()
-            m_id = int(input("medlems id: "))
-            
-            cursor.execute("DELETE FROM Medlemmer WHERE MedlemsID = ?", (m_id))
+            medlemstyper_ID=int(input("Oppgi MyTypeID til den du ønsker å fjerne: ")) 
+
+            cursor.execute(f"DELETE FROM medlemstyper WHERE MedlemsID = ?", (medlemstyper_ID))
             cursor.commit()
             print("Data slettet!")
         # 5.3.Øk kontingentenmed 10%
